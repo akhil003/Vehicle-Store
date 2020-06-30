@@ -14,7 +14,7 @@ public class VehicleService {
 
         if(type.equals(VehicleType.HATCHBACK)){
             brands.add("Maruti Suzuki Swift");
-            brands.add(("Hyundai Santro"));
+            
 
         }else if(type.equals(VehicleType.SUV)){
             brands.add("Hyundai Creta");
