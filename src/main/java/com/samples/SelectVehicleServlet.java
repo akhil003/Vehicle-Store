@@ -1,7 +1,14 @@
 package com.samples;
 
 import java.io.IOException;
+import org.junit.Before;
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.junit.*;
 import java.util.List;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.json.StaticInitializerCoercer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,32 +21,36 @@ import com.samples.VehicleService;
 import com.sample.model.VehicleType;
 
 @WebServlet(
-        name = "selectvehicleservlet",
-        urlPatterns = "/SelectVehicle"
-        )
-public class SelectVehicleServlet extends HttpServlet {
+		name = "selectvehicleservlet",
+		urlPatterns = "/SelectVehicle"
+		)
+public class SelectVehicleServlet extends HttpServlet {     
 
-        	 @Override
-        	    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	@Override
 
-        	        String vehicleType = req.getParameter("Type");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        	        VehicleService vehicleService = new VehicleService();
-        	        VehicleType v = VehicleType.valueOf(vehicleType);
+		String vehicleType = req.getParameter("Type");
 
-        	        List vehicleBrands = vehicleService.getAvailableBrands(v);
 
-        	        req.setAttribute("brands", vehicleBrands);
-        	        RequestDispatcher view = req.getRequestDispatcher("result.jsp");
-        	        view.forward(req, resp);
 
-        	    }    	
-        	
-        	
-        	
-        	
-        	
+		VehicleService vehicleService = new VehicleService();
+		VehicleType v = VehicleType.valueOf(vehicleType);
+
+		List vehicleBrands = vehicleService.getAvailableBrands(v);
+
+		req.setAttribute("brands", vehicleBrands);
+		RequestDispatcher view = req.getRequestDispatcher("result.jsp");
+		view.forward(req, resp);
+
+
+		
+	}
+
+
+
+
 }
-        
-        
-        
+
+
+
